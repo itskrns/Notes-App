@@ -1,4 +1,4 @@
-import connectDB from '@/app/lib/mongodb';
+import connectDB from '@/app/_lib/mongodb';
 import Note from '@/models/Note';
 
 export async function DELETE(request, { params }) {
@@ -40,7 +40,6 @@ export async function PATCH(request, { params }) {
       status: 200,
     });
   } catch (error) {
-    console.log(error);
     return new Response('Error adding to favorites', { status: 500 });
   }
 }

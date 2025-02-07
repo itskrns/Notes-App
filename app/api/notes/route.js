@@ -1,4 +1,4 @@
-import connectDB from '@/app/lib/mongodb.js';
+import connectDB from '@/app/_lib/mongodb.js';
 import Note from '@/models/Note';
 
 export async function GET() {
@@ -15,14 +15,31 @@ export async function GET() {
 
 export async function POST(request) {
   try {
-    const { title, content, isFav = false } = await request.json();
+    const {
+      title,
+      content,
+      noteType,
+      duration = 0,
+      isFav = false,
+    } = await request.json();
+
+    if (!title || !content || !noteType)
+      return new Response('Missing Required Fields', { status: 400 });
+
+    if (noteType === 'audio' && isNaN(duration)) {
+      return new Response('Invalid duration for audio note', {
+        status: 400,
+      });
+    }
 
     await connectDB();
 
     const newNote = new Note({
       title,
       content,
+      noteType,
       isFav,
+      duration: noteType === 'audio' ? duration : undefined,
     });
 
     await newNote.save();

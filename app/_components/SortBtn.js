@@ -7,7 +7,7 @@ export default function SortBtn() {
   const { sortBy, setSortBy } = useNotes();
   return (
     <button
-      className="flex items-center gap-1 rounded-md bg-gray-200 p-2 text-sm font-semibold text-gray-500 outline-none"
+      className="flex items-center gap-1 rounded-md bg-purple-800 p-2 text-sm font-semibold text-white outline-none"
       onClick={() => setSortBy(sortBy === 'asc' ? 'desc' : 'asc')}
     >
       {sortBy === 'desc' ? (

@@ -1,4 +1,4 @@
-import Footer from './_components/Footer';
+import InputBar from './_components/InputBar';
 import Header from './_components/Header';
 import Sidebar from './_components/Sidebar';
 import { NotesProvider } from './_context/NotesContext';
@@ -23,7 +23,7 @@ export default function RootLayout({ children }) {
             </aside>
             <main className="col-start-2 row-start-2 p-4">{children}</main>
             <footer className="col-start-2 row-start-3 pb-4">
-              <Footer />
+              <InputBar />
             </footer>
           </div>
         </NotesProvider>

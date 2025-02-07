@@ -8,8 +8,12 @@ export function NotesProvider({ children }) {
   const [notes, setNotes] = useState([]);
   const [sortBy, setSortBy] = useState('desc');
   const [search, setSearch] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
   async function getNotes() {
+    if (isLoading) return;
+
+    setIsLoading(true);
     try {
       const res = await fetch('/api/notes');
       const data = await res.json();
@@ -31,6 +35,8 @@ export function NotesProvider({ children }) {
       console.log('Notes fetched successfully!');
     } catch (error) {
       console.log('Error fetching notes!');
+    } finally {
+      setIsLoading(false);
     }
   }
 
@@ -61,6 +67,10 @@ export function NotesProvider({ children }) {
     else console.error('Error deleting note');
   }
 
+  async function editNote(id) {
+    console.log('Edit note');
+  }
+
   async function copyNote({ title, content }) {
     const textToCopy = `${title}\n${content}`;
 
@@ -78,6 +88,7 @@ export function NotesProvider({ children }) {
         setSearch,
         deleteNote,
         copyNote,
+        editNote,
         toggleFavorites,
       }}
     >
