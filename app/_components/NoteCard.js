@@ -1,15 +1,15 @@
 'use client';
 
 import {
-  CheckIcon,
   DocumentDuplicateIcon,
   DocumentTextIcon,
   EllipsisHorizontalIcon,
   PencilSquareIcon,
   PlayIcon,
-  PlusIcon,
+  StarIcon as ActiveStarIcon,
   TrashIcon,
 } from '@heroicons/react/24/solid';
+import { StarIcon } from '@heroicons/react/24/outline';
 import { useState } from 'react';
 import { useNotes } from '../_context/NotesContext';
 
@@ -19,7 +19,7 @@ export default function NoteCard({
   title,
   content,
   date,
-  isFav = false,
+  isFav,
 }) {
   const [showMenu, setShowMenu] = useState(false);
   const { deleteNote, copyNote, toggleFavorites } = useNotes();
@@ -64,9 +64,9 @@ export default function NoteCard({
 
           <button onClick={() => toggleFavorites(id, isFav)}>
             {isFav ? (
-              <CheckIcon className="size-5 cursor-pointer text-gray-300" />
+              <ActiveStarIcon className="size-5 cursor-pointer text-gray-300" />
             ) : (
-              <PlusIcon className="size-5 cursor-pointer text-gray-300" />
+              <StarIcon className="size-5 cursor-pointer text-gray-300" />
             )}
           </button>
 

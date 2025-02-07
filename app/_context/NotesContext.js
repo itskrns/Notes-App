@@ -42,12 +42,12 @@ export function NotesProvider({ children }) {
   );
 
   async function toggleFavorites(id, isFav) {
-    const updatedNote = { isFav: !isFav };
+    if (!id) return;
 
     const res = await fetch(`/api/notes/${id}`, {
       method: 'PATCH',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(updatedNote),
+      body: JSON.stringify({ isFav: !isFav }),
     });
 
     if (res.ok) getNotes();
@@ -61,11 +61,12 @@ export function NotesProvider({ children }) {
     else console.error('Error deleting note');
   }
 
-  async function copyNote(title, content) {
-    const textToCopy = `${title}\n\n${content}`;
+  async function copyNote({ title, content }) {
+    const textToCopy = `${title}\n${content}`;
 
     navigator.clipboard.writeText(textToCopy).then(() => alert('Note Copied'));
   }
+
   return (
     <NotesContext.Provider
       value={{

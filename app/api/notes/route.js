@@ -15,14 +15,14 @@ export async function GET() {
 
 export async function POST(request) {
   try {
-    const { title, content } = await request.json();
+    const { title, content, isFav = false } = await request.json();
 
     await connectDB();
 
     const newNote = new Note({
       title,
       content,
-      isFav: false,
+      isFav,
     });
 
     await newNote.save();

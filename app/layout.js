@@ -21,9 +21,7 @@ export default function RootLayout({ children }) {
             <aside className="col-start-1 row-span-3 row-start-1 p-2">
               <Sidebar />
             </aside>
-            <main className="col-start-2 row-start-2 flex flex-wrap gap-2 p-4">
-              {children}
-            </main>
+            <main className="col-start-2 row-start-2 p-4">{children}</main>
             <footer className="col-start-2 row-start-3 pb-4">
               <Footer />
             </footer>

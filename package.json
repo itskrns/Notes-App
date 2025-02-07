@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@heroicons/react": "^2.2.0",
+    "cloudinary": "^2.5.1",
     "mongoose": "^8.9.7",
     "next": "15.1.6",
     "prettier": "^3.4.2",
